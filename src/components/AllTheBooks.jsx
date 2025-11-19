@@ -1,12 +1,13 @@
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import Books from "../assets/scifi.json";
 
-const AllTheBooks = function ({ onSelectBook }) {
+const AllTheBooks = function ({ books, onSelectBook, searchTerm }) {
+  const filteredBooks = books.filter((book) => {
+    return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+  });
   return (
     <Container>
       <Row>
-        {Books.map((book) => {
+        {filteredBooks.map((book) => {
           return (
             <Col key={book.asin} className="w-25 mb-5 " xs={12} md={4} lg={3}>
               <Card className="h-100 border border-dark">
